@@ -1,15 +1,35 @@
 import './sass/bulma-overrides.scss';
-import {VerbList} from "./components/VerbList";
+import {BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { ToastContainer} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import {VerbsIndex} from "./containers/Verbs/VerbsIndex";
+import {Home} from "./containers/Home/Home";
+import {VerbsCards} from "./containers/Verbs/VerbsCards";
+
+const ContentToRender = () => {
+
+    return (
+        <Router>
+            <Switch>
+                <Route path="/verbs/cards" component={VerbsCards} exact />
+                <Route path="/verbs" component={VerbsIndex} exact />
+                <Route path="/" component={Home} exact />
+            </Switch>
+        </Router>
+    )
+}
+
 function App() {
   return (
     <div className="App">
         <div className="container">
             <div className="columns mt-5">
                 <div className="column">
-                    <VerbList/>
+                    <ContentToRender/>
                 </div>
             </div>
         </div>
+        <ToastContainer />
     </div>
   );
 }

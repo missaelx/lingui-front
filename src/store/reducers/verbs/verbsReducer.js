@@ -1,7 +1,9 @@
 import * as actionTypes from '../../Actions';
 
 const initialState = {
-    verbs: []
+    verbs: [],
+    practicePreterite: false,
+    practicePastParticiple: false,
 };
 
 const reducer = (state = initialState, action) => {
@@ -10,6 +12,16 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 verbs: action.payload
+            };
+        case actionTypes.SET_PRACTICE_PRETERITE:
+            return {
+                ...state,
+                practicePreterite: action.payload
+            };
+        case actionTypes.SET_PRACTICE_PAST_PARTICIPLE:
+            return {
+                ...state,
+                practicePastParticiple: action.payload
             };
         default:
             return state;
