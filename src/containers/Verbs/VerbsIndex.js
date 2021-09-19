@@ -2,7 +2,7 @@ import {useRef} from "react";
 import {toast} from "react-toastify";
 import {useDispatch} from "react-redux";
 import * as actions from '../../store/Actions';
-import {useHistory} from "react-router-dom";
+import {Link, useHistory} from "react-router-dom";
 
 export const VerbsIndex = () => {
     const dispatch = useDispatch();
@@ -46,6 +46,17 @@ export const VerbsIndex = () => {
                 </form>
             </div>
         </div>
-        <p className="mt-3 help">We'll show you a card so you'll need to fill with the right verb form.</p>
+        <p className="mt-3 help block">We'll show you a card so you'll need to fill with the right verb form.</p>
+        <h2 className={"is-2 subtitle block"}>Reference</h2>
+        <div className="card">
+            <div className="card-content">
+                <div className="content">
+                    <p className="block"><strong>Review the list of verbs</strong></p>
+                    <div className="block">
+                        <Link to={"/verbs/list"} className={"button is-primary"}>Show</Link>
+                    </div>
+                </div>
+            </div>
+        </div>
     </>)
 }

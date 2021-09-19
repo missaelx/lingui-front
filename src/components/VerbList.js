@@ -1,6 +1,4 @@
-import verbs from '../data/verbs.json';
-
-export const VerbList = () => {
+export const VerbList = ({verbs}) => {
     return (
         <table className="table">
             <thead>

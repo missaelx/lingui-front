@@ -29,6 +29,6 @@ const modules = [
 ];
 export const Home = () => {
     return (
-        <LinkList elements={modules} title={"Modulos"}/>
+        <LinkList elements={modules} title={"Modules"}/>
     )
 }

@@ -29,9 +29,11 @@ export const VerbsCards = () => {
         )
     }
     const loadNextQuestion = () => {
-        preteriteAnswerRef.current.value = "";
-        pastParticipleAnswerRef.current.value = "";
+        if(practicePastParticiple){
+            pastParticipleAnswerRef.current.value = "";
+        }
         if(practicePreterite){
+            preteriteAnswerRef.current.value = "";
             preteriteAnswerRef.current.focus()
         } else {
             pastParticipleAnswerRef.current.focus();
@@ -81,7 +83,7 @@ export const VerbsCards = () => {
             let userResponsePreterite = preteriteAnswerRef.current.value;
             userResponsePreterite = userResponsePreterite.trim();
             userResponsePreterite = userResponsePreterite.toLowerCase();
-            if(userResponsePreterite !== currentVerb.preterite){
+            if(!currentVerb.preterite.split("/").includes(userResponsePreterite)){
                 toast.error("The preterite form of the verb was wrong");
                 console.log(`"${currentVerb.preterite}" was expected but "${userResponsePreterite}" was recieved`);
                 result = false;
@@ -91,7 +93,7 @@ export const VerbsCards = () => {
             let userResponsePastParticiple = pastParticipleAnswerRef.current.value;
             userResponsePastParticiple = userResponsePastParticiple.trim();
             userResponsePastParticiple = userResponsePastParticiple.toLowerCase();
-            if(userResponsePastParticiple !== currentVerb.past_participle){
+            if(!currentVerb.past_participle.split("/").includes(userResponsePastParticiple)){
                 toast.error("The past participle form of the verb was wrong");
                 console.log(`"${currentVerb.past_participle}" was expected but "${userResponsePastParticiple}" was recieved`);
                 result = false;
