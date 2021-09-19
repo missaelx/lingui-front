@@ -6,8 +6,8 @@ export const LinkList = ({elements, title}) => {
             <p className="panel-heading">
                 {title}
             </p>
-            {elements.map(element => (
-                <LinkItem element={element} />
+            {elements.map((element, i) => (
+                <LinkItem key={i} element={element} />
             ))}
         </nav>
     )

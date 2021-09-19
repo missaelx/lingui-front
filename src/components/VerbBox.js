@@ -1,36 +1,15 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faArrowRight } from '@fortawesome/free-solid-svg-icons'
+import { faArrowRight, faQuestion, faSync} from '@fortawesome/free-solid-svg-icons'
 
-export const VerbBox = ({title, content, onOmitHandler = () => {}}) => {
-
-    let m = (
-        <div className="box">
-            <article className="media">
-                <div className="media-content">
-                    <div className="content has-text-centered is-size-3">
-                        <p>
-                            {title}
-                            <br/>
-                            <strong>{content}</strong>
-                        </p>
-                    </div>
-                    <nav>
-                        <div className="level-right">
-                            <button onClick={onOmitHandler} className="level-item is-text button" aria-label="omitir">
-                                <span>Omitir</span>
-                                <span className="icon is-small">
-                                    <FontAwesomeIcon icon={faArrowRight} />
-                                </span>
-                            </button>
-                        </div>
-                    </nav>
-                </div>
-            </article>
-        </div>
-    )
-
+export const VerbBox = ({
+        title,
+        content,
+        onOmitHandler = () => {},
+        onShowAnswerHandler = () => {},
+        onRestartHandler = () => {},
+        }) => {
     return (
-        <div className="card">
+        <div className="card block">
             <header className="card-header">
                 <p className="card-header-title is-justify-content-center">
                     {title}
@@ -42,8 +21,24 @@ export const VerbBox = ({title, content, onOmitHandler = () => {}}) => {
                 </div>
             </div>
             <footer className="card-footer">
-                <a href="#" className="card-footer-item">Edit</a>
-                <a href="#" className="card-footer-item">Delete</a>
+                <a href="/#" className="card-footer-item" onClick={onRestartHandler}>
+                    <span className={"mr-1"}>Restart</span>
+                    <span className="icon is-small">
+                        <FontAwesomeIcon icon={faSync} />
+                    </span>
+                </a>
+                <a href="/#" className="card-footer-item" onClick={onShowAnswerHandler}>
+                    <span className={"mr-1"}>Show answer</span>
+                    <span className="icon is-small">
+                        <FontAwesomeIcon icon={faQuestion} />
+                    </span>
+                </a>
+                <a href="/#" className="card-footer-item" onClick={onOmitHandler}>
+                    <span className={"mr-1"}>Omit</span>
+                    <span className="icon is-small">
+                        <FontAwesomeIcon icon={faArrowRight} />
+                    </span>
+                </a>
             </footer>
         </div>
     )
