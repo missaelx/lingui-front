@@ -35,8 +35,8 @@ export const VerbsIndex = () => {
                             <input type="checkbox" className={"mr-1"} ref={checkPreterite}/>
                                 Preterite
                         </label>
-                        <label className="checkbox" ref={checkPastParticiple}>
-                            <input type="checkbox" className={"mr-1"}/>
+                        <label className="checkbox mr-2">
+                            <input type="checkbox" className={"mr-1"} ref={checkPastParticiple}/>
                                 Past participle
                         </label>
                     </div>

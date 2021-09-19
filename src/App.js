@@ -21,9 +21,9 @@ const ContentToRender = () => {
 
 function App() {
   return (
-    <div className="App">
+    <div className="App section">
         <div className="container">
-            <div className="columns mt-5">
+            <div className="columns">
                 <div className="column">
                     <ContentToRender/>
                 </div>
