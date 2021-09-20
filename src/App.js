@@ -6,6 +6,7 @@ import {VerbsIndex} from "./containers/Verbs/VerbsIndex";
 import {Home} from "./containers/Home/Home";
 import {VerbsCards} from "./containers/Verbs/VerbsCards";
 import {VerbsReference} from "./containers/Verbs/VerbsReference";
+import {ModalContainer} from "./components/ui/ModalContainer";
 
 const ContentToRender = () => {
 
@@ -31,6 +32,7 @@ function App() {
                 </div>
             </div>
         </div>
+        <ModalContainer/>
         <ToastContainer />
     </div>
   );

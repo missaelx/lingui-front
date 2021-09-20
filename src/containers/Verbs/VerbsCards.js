@@ -6,6 +6,14 @@ import {useRef, useState} from "react";
 import {toast} from "react-toastify";
 import {VerbsCardStats} from "../../components/VerbsCardStats";
 
+const randomizeVerb = (arr) => {
+    return arr
+        .map((value) => ({ value, sort: Math.random() }))
+        .sort((a, b) => a.sort - b.sort)
+        .map(({ value }) => value)
+        .slice(0, 3);
+}
+
 export const VerbsCards = () => {
     const practicePreterite = useSelector(state => state.verbs.practicePreterite);
     const practicePastParticiple = useSelector(state => state.verbs.practicePastParticiple);
@@ -14,12 +22,14 @@ export const VerbsCards = () => {
     const pastParticipleAnswerRef = useRef();
 
     //randomize the array. Don't use on large arrays
-    const [currentGameVerbs, setCurrentGameVerbs] = useState( () => verbs.map((value) => ({ value, sort: Math.random() })).sort((a, b) => a.sort - b.sort).map(({ value }) => value))
+    const [currentGameVerbs, setCurrentGameVerbs] = useState( () => randomizeVerb(verbs));
     const [currentGameVerbIndex, setCurrentGameVerbIndex] = useState(0);
 
     const [omittedVerbsCount, setOmittedVerbsCount] = useState(0);
     const [correctAswersCount, setCorrectAswersCount] = useState(0);
     const [wrongAswersCount, setWrongAswersCount] = useState(0);
+
+    const [wrongAswersVerbs, setWrongAswersVerbs] = useState([]);
 
     if(!practicePreterite && !practicePastParticiple){
         return (
@@ -58,7 +68,7 @@ export const VerbsCards = () => {
         event.preventDefault();
         preteriteAnswerRef.current.value = "";
         pastParticipleAnswerRef.current.value = "";
-        setCurrentGameVerbs(verbs.map((value) => ({ value, sort: Math.random() })).sort((a, b) => a.sort - b.sort).map(({ value }) => value))
+        setCurrentGameVerbs(randomizeVerb(verbs))
         setCurrentGameVerbIndex(0);
         setOmittedVerbsCount(0);
         setCorrectAswersCount(0);
@@ -101,6 +111,7 @@ export const VerbsCards = () => {
         }
         if(!result) {
             setWrongAswersCount(wrongAswersCount + 1);
+            setWrongAswersVerbs([...wrongAswersVerbs, currentGameVerbs[currentGameVerbIndex]]);
         } else {
             setCorrectAswersCount(correctAswersCount + 1);
             toast.success("Correct!!! 😊")
