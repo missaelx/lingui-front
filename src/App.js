@@ -6,7 +6,7 @@ import {VerbsIndex} from "./containers/Verbs/VerbsIndex";
 import {Home} from "./containers/Home/Home";
 import {VerbsCards} from "./containers/Verbs/VerbsCards";
 import {VerbsReference} from "./containers/Verbs/VerbsReference";
-import {ModalContainer} from "./components/ui/ModalContainer";
+import {ModalContainer} from "./components/ui/Modal/ModalContainer";
 
 const ContentToRender = () => {
 

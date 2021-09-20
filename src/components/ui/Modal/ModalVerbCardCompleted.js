@@ -1,4 +1,4 @@
-import {VerbList} from "../VerbList";
+import {VerbList} from "../../VerbList";
 
 export const ModalVerbCardCompleted = ({wrongVerbs}) => {
 

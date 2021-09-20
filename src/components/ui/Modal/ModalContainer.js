@@ -1,15 +1,16 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import {useDispatch, useSelector} from "react-redux";
-import  * as actions from '../../store/Actions';
-import {useEffect} from "react";
-import * as modalTypes from '../../store/reducers/modal/modalTypes';
+import  * as actions from '../../../store/Actions';
+import * as modalTypes from '../../../store/reducers/modal/modalTypes';
 import {ModalVerbCardCompleted} from "./ModalVerbCardCompleted";
+import {ModalVerbAnswer} from "./ModalVerbAnswer";
 
 
 const createModalContent = (modalType, additionalData) => {
     switch(modalType){
         case modalTypes.VerbsCards:
             return <ModalVerbCardCompleted wrongVerbs={additionalData ?? []}/>
+        case modalTypes.VerbsAnswer:
+            return <ModalVerbAnswer verb={additionalData} />
         default:
             return null;
     }

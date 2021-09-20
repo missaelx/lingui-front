@@ -72,7 +72,6 @@ export const VerbsCards = () => {
                     }
                 }]
             }})
-
     }
     const onOmitClick = (event) => {
         event.preventDefault();
@@ -101,11 +100,26 @@ export const VerbsCards = () => {
 
     const onShowAnswerClick = (event) => {
         event.preventDefault();
-        alert("Showing the answer in the console, sorry, we are coding");
         console.log("preterite",currentGameVerbs[currentGameVerbIndex].preterite)
         console.log("past participle",currentGameVerbs[currentGameVerbIndex].past_participle)
 
+
+        dispatch({type: actions.SHOW_MODAL, payload: {
+                title: "Answer",
+                type: modalTypes.VerbsAnswer,
+                additionalData: currentGameVerbs[currentGameVerbIndex],
+                buttons: [{
+                    classes: "button is-primary",
+                    label: "Continue",
+                    handler: () => {
+                        dispatch({type: actions.HIDE_MODAL})
+                    }
+                }]
+            }})
+
+
         setOmittedVerbsCount(omittedVerbsCount + 1);
+        loadNextQuestion();
     }
 
     const onVerifyAnswer = (event) => {
