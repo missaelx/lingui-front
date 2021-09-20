@@ -1,20 +1,23 @@
 import {VerbBox} from "../../components/VerbBox";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {Link} from "react-router-dom";
 import verbs from "../../data/verbs.json";
 import {useRef, useState} from "react";
 import {toast} from "react-toastify";
 import {VerbsCardStats} from "../../components/VerbsCardStats";
+import {Breadcrumb} from "../../components/ui/Breadcrumb";
+import * as actions from '../../store/Actions';
+import * as modalTypes from '../../store/reducers/modal/modalTypes';
 
 const randomizeVerb = (arr) => {
     return arr
         .map((value) => ({ value, sort: Math.random() }))
         .sort((a, b) => a.sort - b.sort)
-        .map(({ value }) => value)
-        .slice(0, 3);
+        .map(({ value }) => value);
 }
 
 export const VerbsCards = () => {
+    const dispatch = useDispatch();
     const practicePreterite = useSelector(state => state.verbs.practicePreterite);
     const practicePastParticiple = useSelector(state => state.verbs.practicePastParticiple);
 
@@ -56,7 +59,20 @@ export const VerbsCards = () => {
     }
 
     const finishGame = () => {
-        toast.success("You have completed all the verbs. Congratulations");
+        dispatch({type: actions.SHOW_MODAL, payload: {
+                title: "Module completed 😎",
+                type: modalTypes.VerbsCards,
+                additionalData: wrongAswersVerbs,
+                buttons: [{
+                    classes: "button is-primary",
+                    label: "Continue",
+                    handler: () => {
+                        dispatch({type: actions.HIDE_MODAL})
+                        restartGame();
+                    }
+                }]
+            }})
+
     }
     const onOmitClick = (event) => {
         event.preventDefault();
@@ -66,8 +82,15 @@ export const VerbsCards = () => {
 
     const onRestartClick = (event) => {
         event.preventDefault();
-        preteriteAnswerRef.current.value = "";
-        pastParticipleAnswerRef.current.value = "";
+        restartGame();
+    }
+
+    const restartGame = () => {
+        if(practicePastParticiple)
+            pastParticipleAnswerRef.current.value = "";
+        if(practicePreterite)
+            preteriteAnswerRef.current.value = "";
+
         setCurrentGameVerbs(randomizeVerb(verbs))
         setCurrentGameVerbIndex(0);
         setOmittedVerbsCount(0);
@@ -121,8 +144,22 @@ export const VerbsCards = () => {
 
 
     return (<>
-        <h1 className={"title is-1"}>100 most used verbs <small className={"is-small has-text-grey"}>practice</small></h1>
-        <div className="container">
+        <div className="block">
+            <Breadcrumb elements={[
+                {
+                    label: "Home",
+                    to: "/"
+                },{
+                    label: "Verbs",
+                    to: "/verbs"
+                },{
+                    label: "Cards",
+                    to: "/verbs/cards"
+                },
+            ]} />
+        </div>
+        <h1 className={"title is-1 block"}>100 most used verbs <small className={"is-small has-text-grey"}>practice</small></h1>
+        <div className="container block">
             <div className="columns">
                 <div className="column is-one-third">
                     <VerbsCardStats

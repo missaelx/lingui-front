@@ -9,7 +9,7 @@ import {ModalVerbCardCompleted} from "./ModalVerbCardCompleted";
 const createModalContent = (modalType, additionalData) => {
     switch(modalType){
         case modalTypes.VerbsCards:
-            return <ModalVerbCardCompleted additionalData={additionalData}/>
+            return <ModalVerbCardCompleted wrongVerbs={additionalData ?? []}/>
         default:
             return null;
     }
@@ -23,19 +23,6 @@ export const ModalContainer = () => {
     const type = useSelector(state => state.modal.type);
     const additionalData = useSelector(state => state.modal.additionalData);
     const buttons = useSelector(state => state.modal.buttons);
-
-    // useEffect(() => {
-    //     dispatch({type: actions.SHOW_MODAL, payload: {
-    //             title: "Modal title",
-    //             type: modalTypes.VerbsCards,
-    //             additionalData: ["hola"],
-    //             buttons: [{
-    //                 classes: "button is-primary",
-    //                 label: "Continue",
-    //                 handler: onHideClick
-    //             }]
-    //     }})
-    // }, []);
 
 
     const onHideClick = (event) => {

@@ -3,6 +3,7 @@ import {toast} from "react-toastify";
 import {useDispatch} from "react-redux";
 import * as actions from '../../store/Actions';
 import {Link, useHistory} from "react-router-dom";
+import {Breadcrumb} from "../../components/ui/Breadcrumb";
 
 export const VerbsIndex = () => {
     const dispatch = useDispatch();
@@ -24,6 +25,19 @@ export const VerbsIndex = () => {
 
     }
     return (<>
+        <div className="block">
+            <div className="block">
+                <Breadcrumb elements={[
+                    {
+                        label: "Home",
+                        to: "/"
+                    },{
+                        label: "Verbs",
+                        to: "/verbs"
+                    },
+                ]} />
+            </div>
+        </div>
         <h1 className={"is-1 title block"}>100 most used verbs</h1>
         <h2 className={"is-2 subtitle block"}>Flash cards</h2>
         <div className="card">

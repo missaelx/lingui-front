@@ -18,9 +18,11 @@ const reducer = (state = initialState, action) => {
             };
         case actionTypes.HIDE_MODAL:
             return {
-                ...state,
-                ...action.payload,
-                active: false
+                active: false,
+                title: "",
+                type: "",
+                additionalData: null,
+                buttons: []
             };
         default:
             return state;
