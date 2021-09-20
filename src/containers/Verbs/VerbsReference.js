@@ -1,9 +1,24 @@
 import verbsData from '../../data/verbs.json';
 import {VerbList} from "../../components/VerbList";
+import {Breadcrumb} from "../../components/ui/Breadcrumb";
 export const VerbsReference = () => {
 
     return (<>
-        <div className="box">
+        <div className="block">
+            <Breadcrumb elements={[
+                {
+                    label: "Home",
+                    to: "/"
+                },{
+                    label: "Verbs",
+                    to: "/verbs"
+                },{
+                    label: "Reference",
+                    to: "/verbs/list"
+                },
+            ]} />
+        </div>
+        <div className="box block">
 
             <div className="container">
                 <div className="columns">
